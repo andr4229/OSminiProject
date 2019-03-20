@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 public class StartSlideshow implements Runnable
 {
     private final long DELAY = 1;
-    private int index = 0;
+    private int currentIndex = 0;
     private ImageView imageView;
     private List<Image> images;
     
@@ -33,8 +33,8 @@ public class StartSlideshow implements Runnable
         if (!images.isEmpty())
         {
             while (true){
-                imageView.setImage(images.get(index));
-                index = (index + 1)%images.size();
+                imageView.setImage(images.get(currentIndex));
+                currentIndex = (currentIndex + 1)%images.size();
                 try
                 {
                     TimeUnit.SECONDS.sleep(DELAY);
