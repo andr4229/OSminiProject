@@ -102,8 +102,15 @@ public class FXMLDocumentController implements Initializable {
     private void handleBtnStart(ActionEvent event) {
         executor = Executors.newSingleThreadExecutor();
         executor.submit(slideshow);
+
     }
 
+//    private void handleBtnStartANDr(ActionEvent event)
+//    {
+//        Runnable slideshow = new StartSlideshow(imageView, images);
+//        ExecutorService executor = Executors.newSingleThreadExecutor();
+//        executor.submit(slideshow);
+//    }
     @FXML
     private void handleBtnStop(ActionEvent event) {
 
