@@ -100,4 +100,14 @@ public class FXMLDocumentController implements Initializable
         });
     }
 
+    @FXML
+    private void handleBtnStart(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleBtnStop(ActionEvent event)
+    {
+    }
+
 }
