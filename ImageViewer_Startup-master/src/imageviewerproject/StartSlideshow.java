@@ -32,18 +32,17 @@ public class StartSlideshow implements Runnable
     {
         if (!images.isEmpty())
         {
-            while (true){
-                imageView.setImage(images.get(currentIndex));
-                currentIndex = (currentIndex + 1)%images.size();
-                try
-                {
-                    TimeUnit.SECONDS.sleep(DELAY);
-                } catch (InterruptedException ex)
-                {
-                    Logger.getLogger(StartSlideshow.class.getName()).log(Level.SEVERE, null, ex);
+            try{
+                while (true){
+                    imageView.setImage(images.get(currentIndex));
+                    currentIndex = (currentIndex + 1)%images.size();
+
+
+                        TimeUnit.SECONDS.sleep(DELAY);
                 }
-            }
+            }catch(InterruptedException ex){}
         }
     }
-    
 }
+    
+
