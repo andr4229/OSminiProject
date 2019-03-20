@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -103,6 +105,9 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleBtnStart(ActionEvent event)
     {
+        Runnable slideshow = new StartSlideshow(imageView, images);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(slideshow);
     }
 
     @FXML
