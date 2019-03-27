@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -41,6 +42,8 @@ public class FXMLDocumentController implements Initializable {
 
     private Runnable slideshow;
     private ExecutorService executor;
+    @FXML
+    private Label imgLabel;
 
     private void handleBtnLoadAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -75,7 +78,10 @@ public class FXMLDocumentController implements Initializable {
 
     private void displayImage() {
         if (!images.isEmpty()) {
-            Platform.runLater(()-> {imageView.setImage(images.get(currentImageIndex));});
+            Platform.runLater(()-> {
+                imageView.setImage(images.get(currentImageIndex));
+                imgLabel.setText(images.get(currentImageIndex).impl_getUrl());
+            });
 //            imageView.setImage(images.get(currentImageIndex));
         }
     }
@@ -96,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
                 -> {
             handleBtnNextAction(event);
         });
-        slideshow = new Slideshow(imageView, images, currentImageIndex);
+        slideshow = new Slideshow(imageView, images, currentImageIndex, imgLabel);
         executor = Executors.newSingleThreadExecutor();
     }
 

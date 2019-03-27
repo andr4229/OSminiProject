@@ -8,6 +8,7 @@ package imageviewerproject;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -20,12 +21,13 @@ public class Slideshow implements Runnable {
     ImageView iv;
     List<Image> i;
     int currentIndex;
+    Label imgLabel;
 
-    public Slideshow(ImageView iv, List<Image> i, int currentIndex) {
+    public Slideshow(ImageView iv, List<Image> i, int currentIndex, Label imgLabel) {
         this.iv = iv;
         this.i = i;
         this.currentIndex = currentIndex;
-
+        this.imgLabel = imgLabel;
     }
 
     @Override
@@ -34,7 +36,9 @@ public class Slideshow implements Runnable {
             while (true) {
                 if (!i.isEmpty()) {
                     Platform.runLater(()-> {
-                        iv.setImage(i.get(currentIndex));});
+                        iv.setImage(i.get(currentIndex));
+                        imgLabel.setText(i.get(currentIndex).impl_getUrl());
+                    });
 //                    iv.setImage(i.get(currentIndex));
                     TimeUnit.SECONDS.sleep(1);
                     if(currentIndex == i.size()-1){       currentIndex = 0;  }   else currentIndex++;
