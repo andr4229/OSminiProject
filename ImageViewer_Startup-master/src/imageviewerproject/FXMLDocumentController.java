@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,7 +75,8 @@ public class FXMLDocumentController implements Initializable {
 
     private void displayImage() {
         if (!images.isEmpty()) {
-            imageView.setImage(images.get(currentImageIndex));
+            Platform.runLater(()-> {imageView.setImage(images.get(currentImageIndex));});
+//            imageView.setImage(images.get(currentImageIndex));
         }
     }
 
